@@ -13,24 +13,28 @@ public class MindMapUtils {
     public MindMapUtils() {
     }
 
+    // 计算文本宽度
     public static double calculateTextWidth(String text, Font font) {
         Text tempText = new Text(text);
         tempText.setFont(font);
         return tempText.getBoundsInLocal().getWidth();
     }
 
+    // 计算文本高度
     public static double calculateTextHeight(Font font) {
         Text tempText = new Text("Text");
         tempText.setFont(font);
         return tempText.getBoundsInLocal().getHeight();
     }
 
+    // 创建线段
     public static Line createLine(double startX, double startY, double endX, double endY) {
         Line line = new Line(startX, startY, endX, endY);
         line.setStrokeWidth(2.0);
         return line;
     }
 
+    // 处理鼠标点击事件
     public static void handleMouseClicked(MouseEvent event, Pane root) {
         double x = event.getX();
         double y = event.getY();
@@ -45,6 +49,7 @@ public class MindMapUtils {
 
     }
 
+    // 创建节点视图
     public static void createNodeView(TreeNode node, Pane root) {
         Rectangle rec = new Rectangle(50.0, 30.0, Color.GRAY);
         rec.setX((double)node.getX());
@@ -56,6 +61,7 @@ public class MindMapUtils {
         root.getChildren().add(la);
     }
 
+    // 移除指定位置的节点
     public static void removeNodeAtPosition(double x, double y, Pane root) {
         root.getChildren().removeIf((node) -> {
             if (node instanceof Rectangle) {

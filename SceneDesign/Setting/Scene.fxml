@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane fx:id="AncestorPane" dividerPositions="0.8038521142351117" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#bingPane" prefHeight="586.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Setting.SceneController">
+  <items>
+    <AnchorPane fx:id="leftPane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="577.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" layoutY="48.0" prefHeight="548.0" prefWidth="731.0" />
+            <ToolBar fx:id="toolBar" layoutX="-1.0" prefHeight="48.0" prefWidth="1129.0">
+              <items>
+                  <ChoiceBox fx:id="Files" onMouseReleased="#openFilesSetting" prefHeight="23.0" prefWidth="72.0" translateX="5.0" value="文件Files" />
+<!--                        <Label text="保存文件"  fx:id="saveFiles"/>-->
+<!--                        <Label text="导出文件"  fx:id="exportFiles" />-->
+<!--                        <Label text="打开文件"  fx:id="openFiles" />-->
+<!--                        <Label text="新建文件"  fx:id="New"/>-->
+                  <ChoiceBox fx:id="setNodes" layoutX="-1.0" onMouseReleased="#openNodeSetting" prefHeight="23.0" prefWidth="72.0" translateX="11.0" value="设置布局" />
+                  <Button mnemonicParsing="false" text="添加节点" translateX="19.0" />
+                  <Button mnemonicParsing="false" text="删除节点" translateX="28.0" />
+                  <Button mnemonicParsing="false" text="标签" translateX="35.0" />
+                  <Button mnemonicParsing="false" text="撤销" translateX="41.0" />
+                  <Button mnemonicParsing="false" text="历史记录" translateX="50.0" />
+                  <Button mnemonicParsing="false" text="筛选节点" translateX="60.0" />
+              </items>
+            </ToolBar>
+         </children></AnchorPane>
+    <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="639.0" prefWidth="268.0">
+         <children>
+            <TreeView fx:id="treeView" layoutX="-3.0" layoutY="37.0" prefHeight="548.0" prefWidth="202.0" />
+            <Label fx:id="label" alignment="CENTER" layoutX="33.0" lineSpacing="21.0" prefHeight="37.0" prefWidth="129.0" text="结构总览" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="LiSu" size="19.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

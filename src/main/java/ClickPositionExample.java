@@ -3,7 +3,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class ClickPositionExample extends Application {
@@ -20,8 +19,9 @@ public class ClickPositionExample extends Application {
         root.getChildren().add(button);
 
         button.setOnMouseClicked((MouseEvent event) -> {
-            StackPane clickedPane = (StackPane) button.getParent(); // 获取按钮的父节点
-            System.out.println("Clicked on StackPane at x: " + clickedPane.getLayoutX() + ", y: " + clickedPane.getLayoutY());
+            double clickedX = event.getSceneX();
+            double clickedY = event.getSceneY();
+            System.out.println("Clicked at x: " + clickedX + ", y: " + clickedY);
         });
 
         stage.setTitle("Click Position Example");

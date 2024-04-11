@@ -26,7 +26,8 @@ public class test extends Application {
         Button button1 = new Button("删除节点"); // 删除节点
         button1.setLayoutX(100);
         button1.setLayoutY(50);
-        AtomicReference<StackPane> cur_pane = null;
+        AtomicReference<StackPane> cur_pane = new AtomicReference<>();
+
         rp.getChildren().addAll(button,button1); // 将按钮添加到根节点中
         button.setOnMouseClicked((event) -> { // 当按钮被点击时触发事件
             TreeNode node = new TreeNode(); // 创建一个新的节点

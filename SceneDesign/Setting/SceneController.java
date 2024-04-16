@@ -18,7 +18,7 @@ public class SceneController {
     @FXML
     AnchorPane rightPane;
     @FXML
-    TreeView treeView;
+    Pane treestructure;
     @FXML
     Label label;
     @FXML

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="AncestorPane" dividerPositions="0.8038521142351117" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#bingPane" prefHeight="586.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Setting.SceneController">
+<SplitPane fx:id="AncestorPane" dividerPositions="0.8038521142351117" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#bingPane" prefHeight="586.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
   <items>
     <AnchorPane fx:id="leftPane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="577.0">
          <children>
@@ -34,7 +34,7 @@
          </children></AnchorPane>
     <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="639.0" prefWidth="268.0">
          <children>
-            <TreeView fx:id="treeView" layoutX="-3.0" layoutY="37.0" prefHeight="548.0" prefWidth="202.0" />
+            <Pane fx:id="treestructure" layoutX="-3.0" layoutY="37.0" prefHeight="548.0" prefWidth="202.0" />
             <Label fx:id="label" alignment="CENTER" layoutX="33.0" lineSpacing="21.0" prefHeight="37.0" prefWidth="129.0" text="结构总览" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="LiSu" size="19.0" />

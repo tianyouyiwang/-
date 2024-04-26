@@ -24,7 +24,7 @@
 <!--                        <Label text="打开文件"  fx:id="openFiles" />-->
 <!--                        <Label text="新建文件"  fx:id="New"/>-->
                   <ChoiceBox fx:id="setNodes" layoutX="-1.0" onMouseReleased="#openNodeSetting" prefHeight="23.0" prefWidth="72.0" translateX="11.0" value="设置布局" />
-                  <Button fx:id="addNodeButton" mnemonicParsing="false" text="添加节点" onAction="#addNode" translateX="19.0" />
+                  <Button mnemonicParsing="false" text="添加节点" onAction="#addNode" translateX="19.0" />
                   <Button mnemonicParsing="false" text="删除节点" onAction="#deleteNode" translateX="28.0" />
                   <Button mnemonicParsing="false" text="标签" translateX="35.0" />
                   <Button mnemonicParsing="false" text="撤销" translateX="41.0" />

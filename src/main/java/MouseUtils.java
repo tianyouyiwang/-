@@ -34,11 +34,9 @@ public class MouseUtils extends Application {
 
     public static TreeNode MC_getNode(MouseEvent mouseEvent){
         // 获取鼠标点击位置的坐标
-        double mouse_x = mouseEvent.getX();
-        double mouse_y = mouseEvent.getY();
-        TreeNode node = TreeUtil.findNodeByClick(mouse_x, mouse_y);
-
-        System.out.println("找到了");
+        TreeNode node = TreeUtil.findNodeByClick(mouseEvent.getX(), mouseEvent.getY());
+        if(node!=null)
+            System.out.println("找到了");
         return node;
     }
 

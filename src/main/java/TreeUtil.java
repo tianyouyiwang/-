@@ -30,6 +30,7 @@ public class TreeUtil {
         ++max_id;
         int id = max_id;
         TreeNode node = new TreeNode(pnode.getId());
+        //if(root == null) root = node;
         pnode.getChildren().add(node);
         return node;
     }
@@ -90,16 +91,19 @@ public class TreeUtil {
         return node;
     }
     public static TreeNode findNodeByClick(double x, double y) {
+        //System.out.println(root.toString());
         if (root == null) {
             return null;
         }
-
+        //System.out.println("进来了");
         Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
 
         while (!stack.isEmpty()) {
             TreeNode current = stack.pop();
-            if (current.getRec().contains(x, y)) {
+            //System.out.println(current);
+            if (current.getRec().contains(x, y)) {//出问题
+                System.out.println("进来了");
                 return current;
             }
 

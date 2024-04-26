@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -34,8 +35,7 @@ public class SceneController {
     ChoiceBox setNodes;
     @FXML
     Label exportFiles,New,saveFiles,openFiles;
-    @FXML
-    private TreeView<?> treeView;
+
 
     //将子场景大小绑定于父场景，自适应窗口大小
     public void bingPane(){
@@ -77,12 +77,15 @@ public class SceneController {
     }
     private TreeNode current_node;
     public void addNode(ActionEvent event) {
-        // 在这里编写添加节点的逻辑
+        // 添加节点
         if(current_node == null){
             TreeNode r_node = new TreeNode(0);
             TreeUtil.setRoot(r_node);
             AnchorPane Pane = r_node.getPane();
             current_node = r_node;
+            TreeUtil.setRoot(r_node);
+            System.out.println(TreeUtil.getRoot());
+            System.out.println('e');
             leftPane.getChildren().add(Pane);
         }
         else {
@@ -98,17 +101,22 @@ public class SceneController {
     public void initialize() {
         // 为TreeView添加鼠标点击事件处理程序
         System.out.println("fseh");
-        treeView.setOnMouseClicked(event -> {
+        treestructure.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());//
+
+        leftPane.setOnMouseClicked(event -> {
             // 获取鼠标点击的TreeItem
             handleTreeViewClick(event);
         });
     }
     public void handleTreeViewClick(MouseEvent mouseEvent) {
-        System.out.println("fseh");
+        System.out.println("fnhh");
         current_node = MouseUtils.MC_getNode(mouseEvent); // 获取点击的节点
 
         if (current_node != null) {
             System.out.println("当前点击的节点：" + current_node.getContent());
+        }
+        else {
+            System.out.println("null");
         }
 
         // 添加文本
@@ -124,11 +132,11 @@ public class SceneController {
     @FXML
     private void deleteNode(ActionEvent event) {
         // 获取当前选中的TreeItem
-        TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+        //TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
 
         // 如果选中的节点不为空，则从TreeView中删除它
-        if (selectedItem != null) {
-            selectedItem.getParent().getChildren().remove(selectedItem);
-        }
+        //if (selectedItem != null) {
+        //    selectedItem.getParent().getChildren().remove(selectedItem);
+        //}
     }
 }

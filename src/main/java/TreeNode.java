@@ -49,6 +49,13 @@ public class TreeNode extends TreeData {
         pane.getChildren().addAll(label, rec);
     }
 
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "id=" + getId() +
+                ", content=" + getContent() +
+                '}';
+    }
 
     public static TreeNode getRoot() {
         return root;

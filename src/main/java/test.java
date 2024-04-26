@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -18,8 +19,8 @@ public class test extends Application {
         button.setLayoutX(150.0);
         button.setLayoutY(150.0);
         button.setOnMouseClicked((event) -> {
-            TreeNode node = new TreeNode(0,0);
-            StackPane pane = node.getPane();
+            TreeNode node = new TreeNode(0);
+            AnchorPane pane = node.getPane();
             Scene scene = new Scene(pane, 600.0, 400.0);
             stage.setScene(scene);
         });

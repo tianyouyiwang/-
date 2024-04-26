@@ -1,15 +1,9 @@
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+
 public abstract class TreeData {
     private int pid;
     private int id;
     private String content;
     private String image_path;
-
 
     public TreeData() {
         this.content = "新建节点";
@@ -19,6 +13,11 @@ public abstract class TreeData {
         this.content = "新建节点";
         this.pid = pid;
         this.id = id;
+    }
+
+    public TreeData(int id, int pid, String content) {
+        this(id, pid);
+        this.content = content;
     }
 
     public boolean equals(Object obj) {
@@ -63,6 +62,4 @@ public abstract class TreeData {
     public void setImage_path(String image_path) {
         this.image_path = image_path;
     }
-
-
 }

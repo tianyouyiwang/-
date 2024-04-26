@@ -1,37 +1,38 @@
 import java.util.Iterator;
-
+import java.util.ArrayDeque;
+import java.util.Deque;
 public class TreeUtil {
     private static int max_id = 1;
 
-    // 打印该节点的所有子节点信息
-    public static void showChild(TreeNode node){
-        Iterator<TreeNode> iterator = node.getChildren().iterator();
+    private static TreeNode root = null;
 
-        while(iterator.hasNext()) {
-            TreeNode child = iterator.next();
-            System.out.println("父节点 ID: " + child.getPid() + ", 节点 ID: " + child.getId() );
-        }
+    public static int getMax_id() {
+        return max_id;
     }
 
-    // 递归打印该节点及其所有子节点信息
-    public static void showAllNodes(TreeNode node) {
-        System.out.println("父节点 ID: " + node.getPid() + ", 节点 ID: " + node.getId() );
-
-        for (TreeNode child : node.getChildren()) {
-            showAllNodes(child);
-        }
+    public static void setMax_id(int max_id) {
+        TreeUtil.max_id = max_id;
     }
 
-    // 在父节点下添加一个新的子节点
+    public static TreeNode getRoot() {
+        return root;
+    }
+
+    public static void setRoot(TreeNode root) {
+        TreeUtil.root = root;
+    }
+
+    public static void showChild(TreeNode p_node){
+
+    }
+
     public static TreeNode addChild(TreeNode pnode) {
         ++max_id;
         int id = max_id;
-        TreeNode node = new TreeNode(id, pnode.getId());
+        TreeNode node = new TreeNode(pnode.getId());
         pnode.getChildren().add(node);
         return node;
     }
-
-    // 删除父节点下指定 ID 的子节点
     public static void delete(TreeNode pnode, int nid) {
         Iterator<TreeNode> iterator = pnode.getChildren().iterator();
 
@@ -44,14 +45,12 @@ public class TreeUtil {
         }
     }
 
-    // 判断父节点是否有子节点
-    public static boolean HaveChild(TreeNode pnode) {
+    public static boolean HavaChild(TreeNode pnode) {
         return !pnode.getChildren().isEmpty();
     }
 
-    // 在树中查找指定节点的父节点
     public static TreeNode findParent(TreeNode root, int id) {
-        if (root==null || !HaveChild(root)) {
+        if (root==null || !HavaChild(root)) {
             return null;
         } else {
             Iterator<TreeNode> iterator = root.getChildren().iterator();
@@ -73,8 +72,6 @@ public class TreeUtil {
             return node;
         }
     }
-
-    // 在父节点下查找指定 ID 的子节点
     public static TreeNode findChild(TreeNode pnode,int id){
         Iterator<TreeNode> iterator = pnode.getChildren().iterator();
         TreeNode node;
@@ -88,8 +85,29 @@ public class TreeUtil {
                 return child;
             }
 
-            node = findChild(child, id);
+            node = findParent(child, id);
         } while(node == null);
         return node;
+    }
+    public static TreeNode findNodeByClick(double x, double y) {
+        if (root == null) {
+            return null;
+        }
+
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            if (current.getRec().contains(x, y)) {
+                return current;
+            }
+
+            for (TreeNode child : current.getChildren()) {
+                stack.push(child);
+            }
+        }
+
+        return null;
     }
 }

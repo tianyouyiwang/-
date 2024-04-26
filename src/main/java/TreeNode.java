@@ -1,10 +1,12 @@
+
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TreeNode extends TreeData {
@@ -23,33 +25,30 @@ public class TreeNode extends TreeData {
     private Text text;
     private Label label;
     private Rectangle rec;
-    private StackPane pane;
+    private AnchorPane pane;
+    private static int node_id = 0;
 
-    public TreeNode(int id, int pid) {
-        super(id, pid);
+    public TreeNode(int pid) {
+        super(node_id, pid);
+        node_id++;
         this.borderStyle = BorderStyle.SOLID;
         this.wordColor = WordColor.BLACK;
         this.status = Status.LOW;
         this.text = new Text(this.getContent());
         this.label = new Label(this.getContent());
-        this.pane = new StackPane();
+        this.pane = new AnchorPane();
         double textWidth = text.getLayoutBounds().getWidth();//
         double textHight = text.getLayoutBounds().getHeight();//
         this.rec = new Rectangle(textWidth + 10.0, textHight + 10.0);
         rec.setFill(Color.TRANSPARENT);
         rec.setStroke(Color.BLACK);
-        label.setLayoutX(200.0);
-        label.setLayoutY(200.0);
-        rec.setLayoutX(200.0);
-        rec.setLayoutY(200.0);
+        label.setLayoutX(100.0);
+        label.setLayoutY(100.0);
+        rec.setLayoutX(100.0);
+        rec.setLayoutY(100.0);
         pane.getChildren().addAll(label, rec);
     }
 
-    public TreeNode() {
-        this.borderStyle = BorderStyle.SOLID;
-        this.wordColor = WordColor.BLACK;
-        this.status = Status.LOW;
-    }
 
     public static TreeNode getRoot() {
         return root;
@@ -171,12 +170,20 @@ public class TreeNode extends TreeData {
         this.rec = rec;
     }
 
-    public StackPane getPane() {
+    public AnchorPane getPane() {
         return pane;
     }
 
-    public void setPane(StackPane pane) {
+    public void setPane(AnchorPane pane) {
         this.pane = pane;
+    }
+
+    public static int getNode_id() {
+        return node_id;
+    }
+
+    public static void setNode_id(int node_id) {
+        TreeNode.node_id = node_id;
     }
 }
 enum WordColor {

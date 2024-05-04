@@ -67,8 +67,6 @@ public class MouseUtils extends Application {
             }
         });
 
-//      ！修改：把node.pane加入到canvas之中即可，只需要canvas加入根画布即可
-//      root.getChildren().addAll(canvas, node.getPane());
         root.getChildren().addAll(canvas);
 
         primaryStage.setScene(new Scene(root, 400, 400));

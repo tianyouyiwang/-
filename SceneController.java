@@ -77,14 +77,16 @@ public class SceneController {
         setNodes.setItems(FXCollections.observableArrayList("添加节点","删除节点","标签","撤销","历史记录","筛选节点"));
     }
     private TreeNode current_node;
+    @FXML
     public void addNode(ActionEvent event) {
-        // 添加节点
+        // 清除旧的节点
+        leftPane.getChildren().removeIf(node -> node instanceof Group);
+
+        // 添加新的节点
         if(current_node == null){
             TreeNode r_node = new TreeNode(0,null);
             TreeUtil.setRoot(r_node);
             current_node = r_node;
-            TreeUtil.setRoot(r_node);
-            //System.out.println("111");
         }
         else {
             TreeNode node = TreeUtil.addChild(current_node);
@@ -96,6 +98,7 @@ public class SceneController {
         System.out.println("添加后：");
         TreeUtil.printNodeIds(TreeUtil.getRoot());
     }
+
     @FXML
     public void initialize() {
         // 为TreeView添加鼠标点击事件处理程序
@@ -106,20 +109,29 @@ public class SceneController {
             // 获取鼠标点击的TreeItem
             handleTreeViewClick(event);
         });
+        // 为 Group 添加鼠标点击事件处理程序
+        leftPane.setOnMouseClicked(event -> {
+            if (event.getTarget() instanceof Group) {
+                // 如果点击事件发生在 Group 上，则输出 "Yes"
+                System.out.println("Yes");
+            }
+            else {
+                System.out.println("no");
+            }
+        });
     }
     public void handleTreeViewClick(MouseEvent mouseEvent) {
-        //System.out.println("fnhh");
-        if(MouseUtils.MC_getNode(mouseEvent)!=null)
-            current_node = MouseUtils.MC_getNode(mouseEvent); // 获取点击的节点
-
+        TreeNode node = MouseUtils.MC_getNode(mouseEvent);
+        if(node!=null)
+            current_node = node; // 获取点击的节点
 //        if (current_node != null) {
 //            System.out.println("当前点击的节点：" + current_node.getId());
 //        }
         else {
             System.out.println("null");
         }
+
         if (current_node!=null&&mouseEvent.getClickCount() == 2) {
-            // 在这里打开一个文本编辑框或弹出一个对话框来编辑文本
             //新建一个文本编辑提示框
             Pane editPane = new Pane();
             //设置提示框的宽高以及输出位置
@@ -172,16 +184,12 @@ public class SceneController {
             button_yes.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    // 创建新的 Label 并设置文本为编辑框的文本
                     String content = editbox.getText();
                     TreeNode.UpdateNode(current_node, content);
-
                     // 移除编辑面板
                     leftPane.getChildren().remove(editPane);
-
                     // 清除 leftPane 中的所有 Group，准备重新绘制树
                     leftPane.getChildren().removeIf(node -> node instanceof Group);
-
                     // 重新绘制整个树
                     Group treeScene = TreeDrawer.drawTree(TreeUtil.getRoot());
                     // 将新的树场景图添加到 leftPane
@@ -196,8 +204,6 @@ public class SceneController {
                 }
             });
         }
-
-        // 添加文本
     }
 
     @FXML
@@ -206,18 +212,12 @@ public class SceneController {
             System.out.println("当前没有节点");
             return;
         }
-        TreeNode next_node = null;
-        // 清除当前节点的 Pane 显示
-//        if (current_node != null) {
-//            leftPane.getChildren().remove(current_node.getPane());
-//        }
+        TreeNode next_node;
 
         next_node = current_node.getParent();
         TreeUtil.delete(current_node.getId());
         current_node = next_node;
-        // 清除 leftPane 中的所有子节点
-        //leftPane.getChildren().removeIf(node -> node instanceof Group);
-        // leftPane.getChildren().clear();
+
         if(current_node == null) {
             for (Node node : leftPane.getChildren()) {
                 if (node instanceof Group) {
@@ -225,11 +225,34 @@ public class SceneController {
                 }
             }
         }
+
         // 重新绘制整个树
         Group treeScene = TreeDrawer.drawTree(TreeUtil.getRoot());
+        leftPane.getChildren().removeIf(node -> node instanceof Group);
         leftPane.getChildren().add(treeScene);
         // 打印树
         System.out.println("删除后：");
         TreeUtil.printNodeIds(TreeUtil.getRoot());
+    }
+    //文件操作
+    @FXML
+    private  void saveFile(){
+        Files.setOnAction(event -> {
+            //获取当前值
+            System.out.println(Files.getValue());
+            String value = (String) Files.getValue();
+            switch (value){
+                //导出文件
+                case "Export":
+                    System.out.println("正在导出思维导图为图片");
+                    FileExport fileSave = new FileExport(scrollPane);
+                    fileSave.export();
+                    break;
+            }
+        });
+    }
+
+    public void showNode(ActionEvent actionEvent) {
+        System.out.println(current_node);
     }
 }

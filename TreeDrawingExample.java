@@ -3,6 +3,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class TreeDrawingExample extends Application {
@@ -52,16 +53,23 @@ public class TreeDrawingExample extends Application {
         // 添加按钮的点击事件处理程序
         deleteButton.setOnAction(event -> {
             // 从根节点中删除一个子节点（这里以删除第一个子节点为例）
-            root.getChildren().remove(child1);
+            root.getChildren().remove(0);
             // 重新绘制树
             Group newTreeScene = TreeDrawer.drawTree(root);
             // 将新的树的场景添加到 AnchorPane 中
             anchorPane.getChildren().set(0, newTreeScene);
         });
+
         // 设置舞台
         primaryStage.setTitle("Tree Drawing Example");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // 添加鼠标点击事件处理器到 AnchorPane
+        anchorPane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            // 打印鼠标点击的坐标
+            System.out.println("Mouse Clicked at X: " + event.getX() + ", Y: " + event.getY());
+        });
     }
 
     public static void main(String[] args) {

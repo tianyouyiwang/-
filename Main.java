@@ -14,6 +14,7 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("Scene.fxml"));
         Scene scene = new Scene(root,1125,665);
+        scene.getStylesheets().add(getClass().getResource("editname.css").toExternalForm()); // 加载CSS文件
         primaryStage.setTitle("思维导图工具");
         primaryStage.setScene(scene);
         primaryStage.show();

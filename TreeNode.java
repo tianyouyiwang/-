@@ -20,7 +20,7 @@ public class TreeNode extends TreeData {
     private double left;
     private double top;
     private TreeNode parent;
-    private Group group;
+
     private boolean click = false;
     private BorderStyle borderStyle;
     private WordColor wordColor;
@@ -48,7 +48,6 @@ public class TreeNode extends TreeData {
         rec.setStroke(Color.BLACK);
         pane.getChildren().addAll(label, rec);
         this.setParent(node);
-        group = new Group();
     }
 
     public static void UpdateNode(TreeNode node, String content){
@@ -215,13 +214,6 @@ public class TreeNode extends TreeData {
         this.parent = parent;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 }
 enum WordColor {
     BLACK,

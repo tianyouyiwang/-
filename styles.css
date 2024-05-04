@@ -1,0 +1,41 @@
+.root {
+    -fx-font-family: Arial, sans-serif;
+    -fx-background-color: #f0f0f0; /* Light gray background */
+}
+
+#AncestorPane {
+    -fx-background-color: #ffffff; /* White background */
+}
+
+#leftPane, #rightPane {
+    -fx-padding: 10px; /* Add padding */
+}
+
+#scrollPane {
+    -fx-background-color: #ffffff; /* White background */
+}
+
+#toolBar {
+    -fx-background-color: #f0f0f0; /* Light gray background */
+}
+
+#Files, #setNodes {
+    -fx-font-size: 14px; /* Increase font size */
+    -fx-padding: 5px 10px; /* Add padding */
+}
+
+#addNodeButton, #deleteNode {
+    -fx-font-size: 14px; /* Increase font size */
+    -fx-padding: 5px 10px; /* Add padding */
+    -fx-background-color: #4CAF50; /* Green button */
+    -fx-text-fill: white; /* White text color */
+}
+
+#addNodeButton:hover, #deleteNode:hover {
+    -fx-background-color: #45a049; /* Darker green button on hover */
+}
+
+#label {
+    -fx-font-size: 20px; /* Increase font size */
+    -fx-text-fill: #333333; /* Dark gray text color */
+}

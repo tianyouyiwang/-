@@ -25,25 +25,28 @@ public class TreeUtil {
         System.out.println("当前添加的节点：" + node.getId());
         return node;
     }
+
     public static boolean delete(int id) {
         if (root == null) {
             return false; // 根节点为空，无法执行删除操作
         }
-        // 判断根节点是否是目标节点
         if (root.getId() == id) {
             root = null; // 直接将根节点置为null
             return true;
         }
-        // 遍历根节点的子节点
-        Iterator<TreeNode> iterator = root.getChildren().iterator();
+        return deleteHelper(root, id); // 调用辅助方法进行递归删除
+    }
+
+    private static boolean deleteHelper(TreeNode node, int id) {
+        Iterator<TreeNode> iterator = node.getChildren().iterator();
         while (iterator.hasNext()) {
             TreeNode child = iterator.next();
             if (child.getId() == id) {
                 iterator.remove(); // 找到需要的节点后删除它
                 return true; // 返回true表示成功删除节点
             } else {
-                // 如果当前子节点不是目标节点，则递归调用delete方法继续查找
-                if (delete(id)) {
+                // 如果当前子节点不是目标节点，则递归调用deleteHelper方法继续查找
+                if (deleteHelper(child, id)) {
                     System.out.println("当前删除的节点：" + id);
                     return true; // 如果在子树中找到并删除了节点，则返回true
                 }
@@ -110,8 +113,8 @@ public class TreeUtil {
             System.out.println(current);
             System.out.println(current.getRec().getX()+" "+current.getRec().getY());
 
-            System.out.println(x+" "+y);
-            if (current.getRec().contains(x, y)) {
+            System.out.println(x+" "+y+" " + current.getPane().getLayoutX()+ " "+ current.getPane().getLayoutY());
+            if (current.getPane().contains(x, y)) {
                 System.out.println("进来了");
                 return current;
             }
